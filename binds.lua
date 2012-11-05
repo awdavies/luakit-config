@@ -305,10 +305,10 @@ add_binds("normal", {
     
     key({"Control"}, "e",   function (w)
         -- Get the active element in which our cursor is located.
-        local s = w:eval_js("document.activeElement.value")
+        local s = w.view:eval_js("document.activeElement.value")
 
         local n = "/tmp/" .. os.time()
-        local f = io.open(n "w")
+        local f = io.open(n, "w")
         f:write(s)
         f:flush()
         f:close()
@@ -320,7 +320,7 @@ add_binds("normal", {
         s = s:gsub("^%s*(.-)%s*$", "%1")
         s = string.format("%q", s):sub(2, -2)
         s = s:gsub("\\\n", "\\n")
-        w:eval_js("document.activeElement.value = '" .. s .. "'")
+        w.view:eval_js("document.activeElement.value = '" .. s .. "'")
     end),
 
     key({}, "O", "Open one or more URLs based on current location.",
@@ -462,9 +462,6 @@ readline_bindings = {
 
     key({"Control"}, "a", "Move cursor to beginning of current line.",
         function (w) w:beg_line() end),
-
-    key({"Control"}, "e", "Move cursor to end of current line.",
-        function (w) w:end_line() end),
 
     key({"Control"}, "f", "Move cursor forward one character.",
         function (w) w:forward_char() end),
