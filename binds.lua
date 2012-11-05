@@ -305,22 +305,21 @@ add_binds("normal", {
     
     key({"Control"}, "e",   function (w)
         -- Get the active element in which our cursor is located.
-        local s = w.view:eval_js("document.activeElement.value")
-
-        local n = "/tmp/" .. os.time()
-        local f = io.open(n, "w")
-        f:write(s)
+        local str = w.view:eval_js("document.activeElement.value")
+        local fname = "/tmp/luakit-extedit-" .. os.time()
+        local f = io.open(fname, "w")
+        f:write(str)
         f:flush()
         f:close()
 
-        luakit.spawn_sync("urxvt -e vim -c \"set spell\" \"" .. n .. "\"")
-        f = io.open(n, "r")
-        s = f:read("*all")
+        luakit.spawn_sync("xterm -e vim -c \"set spell\" \"" .. fname .. "\"")
+        f = io.open(fname, "r")
+        str = f:read("*all")
         f:close()
-        s = s:gsub("^%s*(.-)%s*$", "%1")
-        s = string.format("%q", s):sub(2, -2)
-        s = s:gsub("\\\n", "\\n")
-        w.view:eval_js("document.activeElement.value = '" .. s .. "'")
+        str = str:gsub("^%s*(.-)%s*$", "%1")
+        str = string.format("%q", str):sub(2, -2)
+        str = str:gsub("\\\n", "\\n")
+        w.view:eval_js("document.activeElement.value = '" .. str .. "'")
     end),
 
     key({}, "O", "Open one or more URLs based on current location.",
