@@ -92,6 +92,10 @@ require "tabhistory"
 -- Add greasemonkey-like javascript userscript support
 require "userscripts"
 
+-- Adblock!
+require "adblock"
+require "adblock_chrome"
+
 -- Add bookmarks support
 require "bookmarks"
 require "bookmarks_chrome"
