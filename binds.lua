@@ -305,7 +305,7 @@ add_binds("normal", {
     
     key({"Control"},  "e",       function (w)
         local editor = "xterm -e vim -c 'set spell'" 
-        local dir = "/existing/dir/with/trailing/slash/" 
+        local dir = "/tmp/" 
         local time = os.time()
         local file = dir .. time
         local marker = "luakit_extedit_" .. time
