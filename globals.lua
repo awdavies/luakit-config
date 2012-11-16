@@ -56,6 +56,7 @@ search_engines = {
     google      = "https://google.com/search?q=%s",
     imdb        = "http://www.imdb.com/find?s=all&q=%s",
     wiki        = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
+    cpp         = "http://www.cplusplus.com/search.do?q=%s",  -- C++ website search.
 }
 
 -- Set google as fallback search engine
